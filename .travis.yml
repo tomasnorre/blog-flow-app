@@ -1,0 +1,18 @@
+language: php
+
+php:
+  - 5.5
+  - hhvm
+
+before_script:
+# Clone Flow Base
+  - git clone git://git.typo3.org/Flow/Distributions/Base.git FlowBase
+  - cd FlowBase
+# Get most recent composer
+  - composer self-update
+  - composer install
+# Go back to sparting point
+  - cd ..
+
+script:
+  - phpunit -c FlowBase/Build/BuildEssentials/PhpUnit/UnitTests.xml Tests/Unit
